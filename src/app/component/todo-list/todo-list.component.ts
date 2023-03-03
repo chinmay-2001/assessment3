@@ -9,22 +9,13 @@ export interface DialogData {
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.css']
 })
-// export class DialogOverviewExampleDialog {
-//   constructor(
-//     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-//     @Inject(MAT_DIALOG_DATA) public data: DialogData,
-//   ) {}
 
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-// }
 export class TodoListComponent {
 
   todos: any;
   todoName: string = ""
   completedTodo: any = []
-  animal: string = "";
+
   name: string = "";
 
 
@@ -43,31 +34,20 @@ export class TodoListComponent {
   onComplete(todo: any) {
     this.completedTodo.push(todo)
   }
-
+  setTodo: any;
+  updateTodoName: string = ""
+  setodo(todo: any) {
+    console.log("inside set todo")
+    this.setTodo = todo
+  }
   updateTodo() {
-
+    this.http.put(`http://localhost:3000/api/updatetodo/${this.setTodo._id}`, { Name: this.updateTodoName }).subscribe(ev => console.log(ev))
   }
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      data: { name: this.name, animal: this.animal },
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
-}
 
-export class DialogOverviewExampleDialog {
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData,
-  ) { }
 
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+
+
 }
 

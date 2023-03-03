@@ -47,7 +47,13 @@
         <span>{{ todo.Name }}</span></mat-card-content
       >
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="(openDialog)">
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="setodo(todo)"
+          data-bs-toggle="modal"
+          data-bs-target="#updateModel"
+        >
           <span style="line-height: 0px">Update</span>
         </button>
         &nbsp;
@@ -73,5 +79,56 @@
   <!-- todo todo-completed -->
   <div id="todo-completed">
     <div id="todo-title">Todo Completed</div>
+  </div>
+</div>
+
+<!-- Update Model -->
+<div class="modal" id="updateModel">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Create Todo</h4>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+        ></button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label"
+              >Todo</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="Name"
+              placeholder="Name"
+              name="Name"
+              [(ngModel)]="updateTodoName"
+            />
+          </div>
+        </form>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button
+          type="button"
+          class="btn btn-success"
+          data-bs-dismiss="modal"
+          (click)="updateTodo()"
+        >
+          Submit
+        </button>
+      </div>
+    </div>
   </div>
 </div>
