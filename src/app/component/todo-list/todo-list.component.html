@@ -1,0 +1,77 @@
+<div id="header">
+  <div id="blue-box-header">
+    <div id="three-line">
+      <hr id="line1" />
+      <hr id="line2" />
+      <hr id="line3" />
+    </div>
+  </div>
+
+  <div id="title">
+    <span>Todo List</span>
+  </div>
+</div>
+<br />
+<!-- Add todo -->
+<div id="add-section">
+  <form>
+    <mat-form-field appearance="outline">
+      <mat-label>Add Todo</mat-label>
+      <input
+        matInput
+        placeholder="Placeholder"
+        name="car"
+        [(ngModel)]="todoName"
+      />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      color="warn"
+      id="add-button"
+      (click)="creatTodo()"
+    >
+      Add Todo
+    </button>
+  </form>
+</div>
+
+<!-- todo section -->
+<div id="todo-section">
+  <div id="todo">
+    <div id="todo-title">To do</div>
+    <mat-card *ngFor="let todo of todos" id="todo-card">
+      <mat-card-content
+        ><span class="material-symbols-outlined"> pending_actions </span>
+        &nbsp;&nbsp;
+        <span>{{ todo.Name }}</span></mat-card-content
+      >
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="(openDialog)">
+          <span style="line-height: 0px">Update</span>
+        </button>
+        &nbsp;
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="deleteEmployee(todo._id)"
+        >
+          Delete
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          id="completed-button"
+          (click)="onComplete(todo)"
+        >
+          Completed
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <!-- todo todo-completed -->
+  <div id="todo-completed">
+    <div id="todo-title">Todo Completed</div>
+  </div>
+</div>
