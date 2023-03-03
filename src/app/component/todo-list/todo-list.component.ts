@@ -30,9 +30,11 @@ export class TodoListComponent {
 
   deleteEmployee(id: number) {
     this.http.delete(`http://localhost:3000/api/deletetodo/${id}`).subscribe(ev => console.log(ev))
+    this.http.get('http://localhost:3000/api/getodo').subscribe(ev => this.todos = ev)
   }
   onComplete(todo: any) {
     this.completedTodo.push(todo)
+    console.log(this.completedTodo)
   }
   setTodo: any;
   updateTodoName: string = ""

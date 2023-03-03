@@ -79,6 +79,40 @@
   <!-- todo todo-completed -->
   <div id="todo-completed">
     <div id="todo-title">Todo Completed</div>
+    <mat-card *ngFor="let todo of completedTodo" id="todo-card">
+      <mat-card-content
+        ><span class="material-symbols-outlined"> pending_actions </span>
+        &nbsp;&nbsp;
+        <span>{{ todo.Name }}</span></mat-card-content
+      >
+      <mat-card-actions>
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="setodo(todo)"
+          data-bs-toggle="modal"
+          data-bs-target="#updateModel"
+        >
+          <span style="line-height: 0px">Update</span>
+        </button>
+        &nbsp;
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="deleteEmployee(todo._id)"
+        >
+          Delete
+        </button>
+        <button
+          mat-raised-button
+          color="warn"
+          id="completed-button"
+          (click)="onComplete(todo)"
+        >
+          Completed
+        </button>
+      </mat-card-actions>
+    </mat-card>
   </div>
 </div>
 
